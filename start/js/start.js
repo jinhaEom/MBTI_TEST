@@ -1,20 +1,31 @@
 const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
+const endPoint = 12;
 // const 는 변수를 상수로 만들어줌. var 도 사용 할 수 있음 ,
 //querySelecter 는 문서에서 css 선택자에 대응되는 값을 선택해주는 기능.
 function addAnswer(answerText, qIdx){
   var a = document.querySelector('.answerBox');
   var answer = document.createElement('button');
   answer.classList.add('answerList');
+  answer.classList.add('my-3');
+  answer.classList.add('py-3');
+  answer.classList.add('mx-auto');
+  answer.classList.add('fadeIn');
   a.appendChild(answer);
   answer.innerHTML = answerText;
   answer.addEventListener("click", function(){
     var children = document.querySelectorAll('.answerList');
     for(let i = 0; i <children.length; i++){
       children[i].disabled= true;
-      children[i].style.display='none';
+      children[i].style.WebkitAnimation = "fadeOut 0.5s";
+      children[i].style.animation = "fadeOut 0.5s";
     }
-    goNext(++qIdx);
+    setTimeout(()=>{
+      for(let i = 0; i <children.length; i++){
+        children[i].style.display = 'none';
+      }
+      goNext(++qIdx);
+    },450)
   }, false);
 }
 function goNext(qIdx){
@@ -23,6 +34,8 @@ function goNext(qIdx){
   for(let i in qnaList[qIdx].a){
     addAnswer(qnaList[qIdx].a[i].answer, qIdx);
   }
+  var status = document.querySelector('.statusBar');
+  status.style.width = (100/endPoint)*(qIdx+1) + '%';
 }
 
 function begin(){
