@@ -1,9 +1,62 @@
 const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
 const endPoint = 12;
+const result = document.querySelector("#result");
+const select = [];
 // const 는 변수를 상수로 만들어줌. var 도 사용 할 수 있음 ,
 //querySelecter 는 문서에서 css 선택자에 대응되는 값을 선택해주는 기능.
-function addAnswer(answerText, qIdx){
+function calResult(){
+  var pointArray = [
+    { name : 'mouse',value:0, key:1},
+    { name : 'tiger',value:0, key:2},
+    { name : 'rabbit',value:0, key:3},
+    { name : 'dragon',value:0, key:4},
+    { name : 'snake',value:0, key:5},
+    { name : 'horse',value:0, key:6},
+    { name : 'sheep',value:0, key:7},
+    { name : 'monkey',value:0, key:8},
+    { name : 'chick',value:0, key:9},
+    { name : 'dog',value:0, key:10},
+    { name : 'pig',value:0, key:11}
+  ]
+  for(let i = 0;  i< endPoint; i++){
+    var target = qnaList[i].a[select[i]];
+    for(let j = 0; j<target.type.length; j++){
+      for(let k = 0; k<pointArray.length; k++){
+        if(target.type[j]===pointArray[k].name){
+          pointArray[k].value +=1;
+        }
+      }
+    }
+  }
+  var resultArray = pointArray.sort(function(a,b){
+    if(a.value>b.value){
+      return -1;
+    }
+    if(a.value<b.value){
+      return 1;
+    }
+    return 0;
+  })
+  console.log(resultArray)
+  let resultword= resultArray[0].key;
+  return resultword; // 정렬된 키 값 확인 가능.
+}
+function goResult(){
+  qna.style.WebkitAnimation = "fadeOut 1s";
+  qna.style.animation = "fadeOut 1s";
+  setTimeout(() => {
+    result.style.WebkitAnimation = "fadeIn 1s";
+    result.style.animation = "fadeIn 1s";
+    setTimeout(() => {
+      qna.style.display = "none";
+      result.style.display = "block"
+    }, 450)})
+
+
+    calResult();
+}
+function addAnswer(answerText, qIdx, idx){
   var a = document.querySelector('.answerBox');
   var answer = document.createElement('button');
   answer.classList.add('answerList');
@@ -21,6 +74,7 @@ function addAnswer(answerText, qIdx){
       children[i].style.animation = "fadeOut 0.5s";
     }
     setTimeout(()=>{
+      select[qIdx] = idx;
       for(let i = 0; i <children.length; i++){
         children[i].style.display = 'none';
       }
@@ -29,10 +83,14 @@ function addAnswer(answerText, qIdx){
   }, false);
 }
 function goNext(qIdx){
+  if(qIdx === endPoint){
+    goResult();
+    return;
+  }
   var q = document.querySelector('.qBox');
   q.innerHTML = qnaList[qIdx].q;
   for(let i in qnaList[qIdx].a){
-    addAnswer(qnaList[qIdx].a[i].answer, qIdx);
+    addAnswer(qnaList[qIdx].a[i].answer, qIdx,i);
   }
   var status = document.querySelector('.statusBar');
   status.style.width = (100/endPoint)*(qIdx+1) + '%';
