@@ -1,7 +1,8 @@
 # MBTI_TEST
 
 전공 프로젝트를 위한 TOY PROJECT 및 기본적인 개념 다지기
-  
+웹사이트
+https://jhmbtitest2.netlify.app/
 웹화면
 ![image](https://user-images.githubusercontent.com/84216838/135789267-fc02d3cc-8243-4756-aad7-0eca1cbe351e.png)
 
