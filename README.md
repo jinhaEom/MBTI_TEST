@@ -15,3 +15,6 @@ https://jhmbtitest2.netlify.app/
 
 상태진행바 표시 및 버튼 클릭 이벤트삽입
 ![image](https://user-images.githubusercontent.com/84216838/136319133-63586052-d13a-41f3-8df0-b4950025b759.png)
+
+결과 ( 카카오톡 API 를 활용하여 카카오톡 공유기능 활성화)
+![image](https://user-images.githubusercontent.com/84216838/138213778-81673ff0-4a52-4034-8b8f-cf86d24414ac.png)
