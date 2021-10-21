@@ -18,3 +18,6 @@ https://jhmbtitest2.netlify.app/
 
 결과 ( 카카오톡 API 를 활용하여 카카오톡 공유기능 활성화)
 ![image](https://user-images.githubusercontent.com/84216838/138213778-81673ff0-4a52-4034-8b8f-cf86d24414ac.png)
+
+카카오톡 공유화면
+![image](https://user-images.githubusercontent.com/84216838/138213867-978797d9-5a6b-425f-841a-3ad85c3afccd.png)
